@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io("http://localhost:8000");
 
 const moveBy = 10;
 
 const BallComponent: React.FC = () => {
+    const socket = io("http://localhost:8000");
+
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {

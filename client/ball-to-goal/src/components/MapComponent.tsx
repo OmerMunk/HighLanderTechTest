@@ -1,9 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {GoogleMap, Marker, useLoadScript} from '@react-google-maps/api'
 
-import io from 'socket.io-client';
 
-import Goal from '../images/goal.png'
 import {highLanderCoordinats} from "../constants/constants";
 import BallComponent from "./BallComponent";
 import GoalComponent from "./GoalComponent";
@@ -11,7 +9,7 @@ import GoalComponent from "./GoalComponent";
 
 interface IMapComponentProps {
     initialBallPosition: { lat: number, lng: number };
-    goalPosition: { lat: number, lng: number };
+    goalPosition: { x: number, y: number };
 }
 
 
@@ -53,9 +51,9 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
             zoom={18}
             center={center}>
             <Marker position={ballPosition}/>
-            <Marker position={goalPosition} />
+            {/*<Marker position={goalPosition} />*/}
             <BallComponent/>
-            <GoalComponent x={15} y={20}/>
+            <GoalComponent x={goalPosition.x} y={goalPosition.y}/>
         </GoogleMap>
         </div>
 
