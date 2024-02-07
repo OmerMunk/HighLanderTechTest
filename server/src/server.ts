@@ -58,7 +58,7 @@ app.get('/', (req, res) => {
 });
 
 const server = http.createServer(app);
-const io: socket.Server = new socket(server);
+const io: socket.Server = new socket.Server(server);
 
 // app.listen(port, () => {
 //     return console.log(`Express is listening at http://localhost:${port}`);
