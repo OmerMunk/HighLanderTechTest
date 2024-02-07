@@ -1,3 +1,7 @@
+import * as http from "http";
+
+import socket from "socket.io";
+
 import express from 'express';
 import cors from 'cors';
 import bodyParser from "body-parser";
@@ -53,6 +57,23 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-app.listen(port, () => {
-    return console.log(`Express is listening at http://localhost:${port}`);
+const server = http.createServer(app);
+const io: socket.Server = new socket(server);
+
+// app.listen(port, () => {
+//     return console.log(`Express is listening at http://localhost:${port}`);
+// });
+
+io.on('connection', (socket: socket.Socket) => {
+    console.log(`user connected`)
+
+    socket.on('moveBall', (location: {x: number, y: number}) => {
+        // handle the movement of the ball
+    })
+
+    io.emit('ballMoved', location)
+})
+
+server.listen(port, () => {
+    console.log(`Server is listening at http://localhost:${port}`);
 });
