@@ -85,7 +85,6 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
 
                 <Marker
                     position={goalPosition}
-                    label={'wow2'}
                     icon={{
                         url: require('../images/goal.png'),
                         scaledSize: new window.google.maps.Size(100, 100)
@@ -97,7 +96,6 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
                 </Marker>
                 <Marker
                     position={ballPosition}
-                    label={'wow2'}
                     icon={{
                         url: require('../images/ball.png'),
                         scaledSize: new window.google.maps.Size(60, 60)
