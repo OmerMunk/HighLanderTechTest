@@ -12,6 +12,9 @@ interface IMapComponentProps {
     goalPosition: { lat: number, lng: number };
     getGoalPosition: () => void;
     showSuccessModal: () => void;
+    buttonsEnabled: boolean;
+    disableButtons: () => void;
+    APIKey: string;
 }
 
 //todo: would add here anouther socket to check the ball position according to the goal position.
@@ -23,19 +26,13 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
     const {goalPosition, showSuccessModal} = props;
 
     const [ballPosition, setBallPosition] = useState(highLanderCoordinats);
-    const [buttonsEnabled, setButtonsEnabled] = useState(true);
 
-    console.log(`ballPosition is ${ballPosition.lat} and ${ballPosition.lng}`);
 
     const setLat = (lat: number) => {
-        console.log(`current lat is ${ballPosition.lat}`)
-        console.log(`new lat is ${lat}`);
         setBallPosition(prevState => {return {lat, lng: prevState.lng}})
     }
 
     const setLng = (lng: number) => {
-        console.log(`current lng is ${ballPosition.lng}`)
-        console.log(`new lng is ${lng}`);
         setBallPosition(prevState => {return {lat: prevState.lat, lng}})
     }
 
@@ -47,14 +44,14 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
     const center = highLanderCoordinats
 
     const {isLoaded, loadError} = useLoadScript({
-        googleMapsApiKey: process.env._GOOGLE_MAPS_API_KEY || 'AIzaSyCdtGPc2gg0Wh8UWRWDGDy8ChwLNyB5DnI'
+        googleMapsApiKey: props.APIKey
         // Todo: would retrieve it from the server as secert from the cloud in a specific api endpoint
     })
 
     useEffect(() => {
         socket.on('ballInGoal', (result) => {
             showSuccessModal();
-            setButtonsEnabled(false);
+            props.disableButtons();
         })
     },[])
 
@@ -110,7 +107,7 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
                         setLng={setLng}
                         lat={ballPosition.lat}
                         lng={ballPosition.lng}
-                        buttonsEnabled={buttonsEnabled}
+                        buttonsEnabled={props.buttonsEnabled}
                     />
 
                 </Marker>

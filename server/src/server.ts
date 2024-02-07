@@ -7,6 +7,7 @@ import cors from 'cors';
 import bodyParser from "body-parser";
 
 import { goalRouter } from "./routes/generateGoalRouter";
+import { googleMapsAPIKeyRouter } from "./routes/getGoogleMapsAPIKeyRouter";
 import {checkBallInGoalHandler} from "./handlers/checkBallInGoalHandler";
 
 
@@ -70,6 +71,7 @@ io.on('connection', (socket: socket.Socket) => {
  * Setup routes
  */
 app.use('/api/v1/goal', goalRouter.getRouter());
+app.use('/api/v1/api', googleMapsAPIKeyRouter.getRouter());
 
 
 
