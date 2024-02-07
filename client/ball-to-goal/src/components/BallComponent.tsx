@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 
-const socket = io("http://your-server-address");
+const socket = io("http://localhost:8000");
+
+const moveBy = 10;
 
 const BallComponent: React.FC = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -12,10 +14,10 @@ const BallComponent: React.FC = () => {
             let newY = position.y;
 
             switch (event.key) {
-                case 'ArrowUp': newY -= 5; break;
-                case 'ArrowDown': newY += 5; break;
-                case 'ArrowLeft': newX -= 5; break;
-                case 'ArrowRight': newX += 5; break;
+                case 'ArrowUp': newY -= moveBy; break;
+                case 'ArrowDown': newY += moveBy; break;
+                case 'ArrowLeft': newX -= moveBy; break;
+                case 'ArrowRight': newX += moveBy; break;
                 default: return; // Ignore other keys
             }
 

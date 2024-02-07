@@ -53,10 +53,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use('/api/v1/goal', goalRouter.getRouter());
 
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
-
 const server = http.createServer(app);
 const io: socket.Server = new socket.Server(server);
 
@@ -68,6 +64,7 @@ io.on('connection', (socket: socket.Socket) => {
     console.log(`user connected`)
 
     socket.on('moveBall', (location: {x: number, y: number}) => {
+        console.log(`moveBall: ${location.x}, ${location.y}`)
         // handle the movement of the ball
     })
 
