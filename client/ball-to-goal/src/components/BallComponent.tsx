@@ -59,14 +59,7 @@ const BallComponent = (props: IBallComponentProps) => {
         }
     }, [props.lat, props.lng]);
 
-    // Render your ball based on the position state
-    return <article>
-        <img
-            src={require('../images/ball.png')}
-            style={{ width: '75px', height: '75px', backgroundColor: 'transparent' }}
-            alt={'ball'}
-        />
-    </article>;
+    return <></> // dummy component
 };
 
 export default BallComponent;

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './styles.scss'
-import MapComponent from "./components/MapComponent";
+import MapComponent from "./components/MapComponent/MapComponent";
 import {highLanderCoordinats} from "./constants/constants";
 import axios from 'axios'
 import Button from "./UI/Button/Button";
@@ -66,27 +66,18 @@ function App() {
 
 
     return (
-        <div style={
-            {
-                display: 'flex',
-                flexDirection: 'column',
-                height: '100vh',
-            }
-        }>
-            <header style={{
-                flexGrow: 1,
-                backgroundColor: 'black',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-around',
-            }}>
+        <div className={'main-container'}>
+            <header className={'header'}>
                 <img
                     height={50}
                     src={'https://static.wixstatic.com/media/7b8ddb_4b1b6b44308e4b8a9e71a1bf3c73a6f5~mv2.gif'}
                 />
                 <Button onClick={()=>{
-                    getGoalPosition()
-                    enableButtons();
+                    getGoalPosition().then(()=>{
+                        enableButtons();
+
+                    })
+
                 }}>reset</Button>
             </header>
             {successModalVisible &&
@@ -102,7 +93,7 @@ function App() {
                     </article>
                 </section>
             }
-            <section style={{flexGrow: 22}}>
+            <section className={'map-section'}>
                 {apiKey && <MapComponent
                     goalPosition={goalPosition}
                     getGoalPosition={getGoalPosition}
@@ -114,17 +105,7 @@ function App() {
                 />}
             </section>
 
-            <footer style={{
-                color: 'white',
-                backgroundColor: 'black',
-                display: 'flex',
-                flexGrow: 1,
-                textAlign: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                verticalAlign: 'middle',
-            }
-            }>
+            <footer className={'footer'}>
                 <p>
                     Test Written By Omer Munk
 

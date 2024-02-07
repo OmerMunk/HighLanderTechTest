@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {GoogleMap, Marker, useLoadScript} from '@react-google-maps/api'
 
 
-import {highLanderCoordinats, serverBaseUrl} from "../constants/constants";
-import BallComponent from "./BallComponent";
-import GoalComponent from "./GoalComponent";
+import {highLanderCoordinats, serverBaseUrl} from "../../constants/constants";
+import BallComponent from "../BallComponent";
 import io from "socket.io-client";
 
 
@@ -49,7 +48,10 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
     useEffect(() => {
         socket.on('ballInGoal', (result) => {
             showSuccessModal();
-            props.disableButtons();
+            if(props.buttonsEnabled) {
+                props.disableButtons();
+            }
+
         })
     },[])
 
@@ -61,10 +63,7 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
 
     return (
         <div
-            style={{
-                pointerEvents: 'none',
-                height: '100%',
-        }}
+            className={'map-component-container'}
         >
 
             <GoogleMap
@@ -82,18 +81,17 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
                 <Marker
                     position={goalPosition}
                     icon={{
-                        url: require('../images/goal.png'),
+                        url: require('../../images/goal.png'),
                         scaledSize: new window.google.maps.Size(100, 100)
                     }}
                 >
 
-                    <GoalComponent lat={goalPosition.lat} lng={goalPosition.lng}/>
 
                 </Marker>
                 <Marker
                     position={ballPosition}
                     icon={{
-                        url: require('../images/ball.png'),
+                        url: require('../../images/ball.png'),
                         scaledSize: new window.google.maps.Size(60, 60)
                     }}
                 >

@@ -6,4 +6,35 @@
   font-family: monospace;
 }
 
+.main-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.header {
+  flex-grow: 1;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.map-section {
+  flex-grow: 22;
+}
+
+.footer {
+  color: white;
+  backgroundC-color: black;
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+}
+
 @import 'UI/Modal/modal';
+@import 'UI/Button/Button';
+@import 'components/MapComponent/MapComponent';
