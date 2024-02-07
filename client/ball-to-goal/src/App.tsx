@@ -61,8 +61,21 @@ function App() {
         <MapComponent goalPosition={goalPosition} getGoalPosition={getGoalPosition}  />
       </section>
         {/*todo: would app a modal or pop up that pops when the ball reaches the goal*/}
-      <footer style={{flexGrow: 1}}>
-        Footer
+      <footer style={{
+          color: 'white',
+          backgroundColor: 'black',
+          display: 'flex',
+          flexGrow: 1,
+          textAlign: 'center',
+          alignItems: 'center',
+          justifyContent: 'center',
+          verticalAlign: 'middle',
+      }
+      }>
+          <p>
+              Test Written By Omer Munk
+
+          </p>
       </footer>
     </div>
   );
