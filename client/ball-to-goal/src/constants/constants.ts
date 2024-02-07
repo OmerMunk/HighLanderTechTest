@@ -1,0 +1,1 @@
+export const highLanderCoordinats = {lat: 32.07790086189508, lng: 34.7905979269834}
