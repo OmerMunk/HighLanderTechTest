@@ -10,7 +10,7 @@ import { goalRouter } from "./routes/generateGoalRouter";
 
 
 const host = 'localhost';
-const port = 3000;
+const port = 8000;
 const serverName = 'ball-to-goal-server'
 
 const app = express();

@@ -11,7 +11,7 @@ function App() {
         Header
       </header>
       <section>
-        <MapComponent ballPosition={{lat: 32.077755408493545, lng: 34.78955186546355}} goalPosition={highLanderCoordinats} />
+        <MapComponent initialBallPosition={{lat: 32.077755408493545, lng: 34.78955186546355}} goalPosition={highLanderCoordinats} />
       </section>
       <footer>
         Footer
