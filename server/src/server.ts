@@ -1,4 +1,8 @@
 import express from 'express';
+import cors from 'cors';
+import bodyParser from "body-parser";
+
+import { goalRouter } from "./routes/generateGoalRouter";
 
 
 const host = 'localhost';
@@ -42,6 +46,7 @@ app.use(express.urlencoded({ extended: true }))
 /**
  * Setup routes
  */
+app.use('/api/v1/goal', goalRouter.getRouter());
 
 
 app.get('/', (req, res) => {

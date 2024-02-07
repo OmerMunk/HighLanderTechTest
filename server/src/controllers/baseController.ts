@@ -16,7 +16,7 @@ interface IBaseControllerParams {
  * @description Base controller function that handles all the logic for the controller
  * @async
  */
-export const baseController = async ({req, res, next, functionName}: IBaseControllerParams) => {
+export const baseController = async ({req, res, next, functionName, logic, handlerParams}: IBaseControllerParams) => {
     try {
         const result = await logic(handlerParams);
         if (result.success) {
@@ -25,7 +25,7 @@ export const baseController = async ({req, res, next, functionName}: IBaseContro
             res.status(400).json(result);
         }
     } catch (error: any) {
-        logger.error(`Error in ${functionName} - ${error.message} - ${error.stack}`);
+        console.error(`Error in ${functionName} - ${error.message} - ${error.stack}`);
         // next(error); // error handler middleware will handle the error
         res.status(500).json({success: false, error: error.message});
     }
