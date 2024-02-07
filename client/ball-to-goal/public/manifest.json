@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Ball To Goal",
+  "name": "Ball To Goal Challenge",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "https://storage.googleapis.com/finder-images/$KMvxvAkiYPUO3SFpkQ2daqlygzLJC36CHUmdqmLtRbx4mJYDaeq9No",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "https://storage.googleapis.com/finder-images/$KMvxvAkiYPUO3SFpkQ2daqlygzLJC36CHUmdqmLtRbx4mJYDaeq9No",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "https://storage.googleapis.com/finder-images/$KMvxvAkiYPUO3SFpkQ2daqlygzLJC36CHUmdqmLtRbx4mJYDaeq9No",
       "type": "image/png",
       "sizes": "512x512"
     }
