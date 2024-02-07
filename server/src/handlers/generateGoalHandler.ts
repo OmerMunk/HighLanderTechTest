@@ -5,8 +5,8 @@ const highLanderCoordinats = {lat: 32.07790086189508, lng: 34.7905979269834}
 
 const generateRandomCoordinates = () => {
     return {
-        lat: highLanderCoordinats.lat + (Math.random() - 0.5) * 0.004,
-        lng: highLanderCoordinats.lng + (Math.random() - 0.5) * 0.004
+        lat: highLanderCoordinats.lat + (Math.random() - 0.5) * 0.0038,
+        lng: highLanderCoordinats.lng + (Math.random() - 0.5) * 0.0038
     }
 
 }

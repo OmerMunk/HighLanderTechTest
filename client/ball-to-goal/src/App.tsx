@@ -4,6 +4,7 @@ import './App.css';
 import MapComponent from "./components/MapComponent";
 import {highLanderCoordinats} from "./constants/constants";
 import axios from 'axios'
+import Button from "./UI/Button/Button";
 
 const fetchGoalPosition = async () => {
     const newGoalPosition = {lat: 0, lng: 0};
@@ -43,9 +44,18 @@ function App() {
         }
     }>
         {/*todo: would wrap in better looking ui for the user*/}
-      <header style={{flexGrow: 1}}>
-        Header
-          <button onClick={getGoalPosition} >reset</button>
+      <header style={{
+          flexGrow: 1,
+          backgroundColor: 'black',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+      }}>
+          <img
+              height={50}
+              src={'https://static.wixstatic.com/media/7b8ddb_4b1b6b44308e4b8a9e71a1bf3c73a6f5~mv2.gif'}
+          />
+          <Button onClick={getGoalPosition}>reset</Button>
       </header>
       <section style={{flexGrow: 22}}>
         <MapComponent goalPosition={goalPosition} getGoalPosition={getGoalPosition}  />
