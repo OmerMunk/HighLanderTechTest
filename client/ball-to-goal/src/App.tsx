@@ -39,11 +39,7 @@ function App() {
         {
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'stretch',
-            alignItems: 'stretch',
-            alignContent: 'stretch',
             height: '100vh',
-            flexBasis: '100%'
         }
     }>
         {/*todo: would wrap in better looking ui for the user*/}
