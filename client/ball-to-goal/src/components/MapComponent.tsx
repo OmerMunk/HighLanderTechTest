@@ -17,7 +17,6 @@ interface IMapComponentProps {
     APIKey: string;
 }
 
-//todo: would add here anouther socket to check the ball position according to the goal position.
 
 
 const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) => {
@@ -45,7 +44,6 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
 
     const {isLoaded, loadError} = useLoadScript({
         googleMapsApiKey: props.APIKey
-        // Todo: would retrieve it from the server as secert from the cloud in a specific api endpoint
     })
 
     useEffect(() => {
@@ -80,8 +78,6 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
                 mapContainerStyle={mapContainerStyle}
                 zoom={18}
                 center={center}>
-                {/*todo: would add the ball and the goal as markets for better google maps api integration*/}
-                {/*<Marker position={ballPosition}/>*/}
 
                 <Marker
                     position={goalPosition}

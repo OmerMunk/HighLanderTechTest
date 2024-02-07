@@ -73,7 +73,6 @@ function App() {
                 height: '100vh',
             }
         }>
-            {/*todo: would wrap in better looking ui for the user*/}
             <header style={{
                 flexGrow: 1,
                 backgroundColor: 'black',
@@ -115,7 +114,6 @@ function App() {
                 />}
             </section>
 
-            {/*todo: would app a modal or pop up that pops when the ball reaches the goal*/}
             <footer style={{
                 color: 'white',
                 backgroundColor: 'black',

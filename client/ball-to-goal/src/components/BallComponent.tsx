@@ -61,10 +61,8 @@ const BallComponent = (props: IBallComponentProps) => {
 
     // Render your ball based on the position state
     return <article>
-        {/*todo: would adapt the coordinates to the google map convention*/}
         <img
             src={require('../images/ball.png')}
-            // todo: for some reason my computer rendered the downloaded file as jpeg - would change to png
             style={{ width: '75px', height: '75px', backgroundColor: 'transparent' }}
             alt={'ball'}
         />
