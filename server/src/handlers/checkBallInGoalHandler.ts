@@ -11,13 +11,9 @@ const radius = 10; // Radius in meters
  * @param y
  */
 export const checkBallInGoalHandler = (lat: number, lng: number) => {
-    console.log(`inside checkBallInGoalHandler with lat: ${lat} and lng: ${lng}`);
     const ballCoordinates = turf.point([lat, lng]);
-    console.log(`ballCoordinates: ${JSON.stringify(ballCoordinates)}`);
     const goalCoordinates = turf.point([currentGoal.lat, currentGoal.lng]);
-    console.log(`goalCoordinates: ${JSON.stringify(goalCoordinates)}`);
     const distance = turf.distance(ballCoordinates, goalCoordinates, {units: 'meters'});
-    console.log(`distance: ${distance}`);
     const isWithinRadius = distance <= radius;
     return {success: true, isWithinRadius};
 }
