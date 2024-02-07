@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 interface IGoalComponentProps {
-    x: number;
-    y: number
+    lat: number;
+    lng: number
 }
 
 const GoalComponent = (props:IGoalComponentProps) => {
-    const {x, y} = props;
+    const {lat, lng} = props;
 
-    return <article style={{ position: 'absolute', left: `${x}px`, top: `${y}px` }}>
+    return <article >
         {/*todo: would adapt the coordinates to the google map convention*/}
         <img
             src={require('../images/goal.png')}

@@ -3,28 +3,40 @@ import io from 'socket.io-client';
 import {serverBaseUrl} from "../constants/constants";
 
 
-const moveBy = 10; // how much to move the ball
+const moveBy = 0.00004; // how much to move the ball
 
-const BallComponent: React.FC = () => {
+interface IBallComponentProps {
+    setLat: (lat: number) => void;
+    setLng: (lng: number) => void;
+    lat: number;
+    lng: number;
+}
+
+const BallComponent = (props: IBallComponentProps) => {
     const socket = io(serverBaseUrl);
 
-    const [position, setPosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            let newX = position.x;
-            let newY = position.y;
+            let newLat = props.lat;
+            let newLng = props.lng;
 
             switch (event.key) {
-                case 'ArrowUp': newY -= moveBy; break;
-                case 'ArrowDown': newY += moveBy; break;
-                case 'ArrowLeft': newX -= moveBy; break;
-                case 'ArrowRight': newX += moveBy; break;
+                case 'ArrowUp': newLat += moveBy; break;
+                case 'ArrowDown': newLat -= moveBy; break;
+                case 'ArrowLeft': newLng -= moveBy; break;
+                case 'ArrowRight': newLng += moveBy; break;
                 default: return; // ignore that non-arrow keys
             }
+            if (event.key === 'ArrowUp' || event.key === 'ArrowDown'){
+                props.setLat(newLat);
+            } else if (event.key === 'ArrowLeft' || event.key === 'ArrowRight'){
+                props.setLng(newLng);
+            }
 
-            setPosition({ x: newX, y: newY });
-            socket.emit('moveBall', { x: newX, y: newY });
+
+
+            socket.emit('moveBall', { lat: newLat, lng: newLng });
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -32,10 +44,10 @@ const BallComponent: React.FC = () => {
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
         };
-    }, [position]);
+    }, [props.lat, props.lng]);
 
     // Render your ball based on the position state
-    return <article style={{ position: 'absolute', left: `${position.x}px`, top: `${position.y}px` }}>
+    return <article>
         {/*todo: would adapt the coordinates to the google map convention*/}
         <img
             src={require('../images/ball.png')}

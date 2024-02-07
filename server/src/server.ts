@@ -59,9 +59,10 @@ const io: socket.Server = new socket.Server(server, {
 
 
 io.on('connection', (socket: socket.Socket) => {
-    socket.on('moveBall', (location: {x: number, y: number}) => {
-        const result = checkBallInGoalHandler(location.x, location.y);
-        io.emit('ballMoved', result)
+    socket.on('moveBall', (location: {lat: number, lng: number}) => {
+        const result = checkBallInGoalHandler(location.lat, location.lng);
+        if (result.isWithinRadius) io.emit('ballInGoal', result)
+
     })
 })
 

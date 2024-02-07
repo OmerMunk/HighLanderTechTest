@@ -1,15 +1,18 @@
 
 import { currentGoal } from '../db/mockDb';
+
+const highLanderCoordinats = {lat: 32.07790086189508, lng: 34.7905979269834}
+
 const generateRandomCoordinates = () => {
     return {
-        x: Math.floor(Math.random() * 1000),
-        y: Math.floor(Math.random() * 1000)
+        lat: highLanderCoordinats.lat + (Math.random() - 0.5) * 0.004,
+        lng: highLanderCoordinats.lng + (Math.random() - 0.5) * 0.004
     }
 
 }
 export const generateGoalHandler = () => {
-    const {x, y} = generateRandomCoordinates();
-    currentGoal.x = x;
-    currentGoal.y = y;
-    return {success: true, x, y};
+    const {lat, lng} = generateRandomCoordinates();
+    currentGoal.lat = lat;
+    currentGoal.lng = lng;
+    return {success: true, lat, lng};
 }

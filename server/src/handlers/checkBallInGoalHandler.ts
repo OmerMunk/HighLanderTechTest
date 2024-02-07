@@ -2,7 +2,6 @@ import {currentGoal} from "../db/mockDb";
 
 import * as turf from '@turf/turf';
 
-// Example: Generate a random goal within a 10km radius around a center point
 const radius = 10; // Radius in meters
 
 
@@ -11,10 +10,14 @@ const radius = 10; // Radius in meters
  * @param x
  * @param y
  */
-export const checkBallInGoalHandler = (x: number, y: number) => {
-    const ballCoordinates = turf.point([x, y]);
-    const goalCoordinates = turf.point([currentGoal.x, currentGoal.y]);
+export const checkBallInGoalHandler = (lat: number, lng: number) => {
+    console.log(`inside checkBallInGoalHandler with lat: ${lat} and lng: ${lng}`);
+    const ballCoordinates = turf.point([lat, lng]);
+    console.log(`ballCoordinates: ${JSON.stringify(ballCoordinates)}`);
+    const goalCoordinates = turf.point([currentGoal.lat, currentGoal.lng]);
+    console.log(`goalCoordinates: ${JSON.stringify(goalCoordinates)}`);
     const distance = turf.distance(ballCoordinates, goalCoordinates, {units: 'meters'});
+    console.log(`distance: ${distance}`);
     const isWithinRadius = distance <= radius;
     return {success: true, isWithinRadius};
 }
