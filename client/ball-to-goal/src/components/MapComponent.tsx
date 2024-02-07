@@ -11,6 +11,7 @@ import io from "socket.io-client";
 interface IMapComponentProps {
     goalPosition: { lat: number, lng: number };
     getGoalPosition: () => void;
+    showSuccessModal: () => void;
 }
 
 //todo: would add here anouther socket to check the ball position according to the goal position.
@@ -19,9 +20,10 @@ interface IMapComponentProps {
 const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) => {
     const socket = io(serverBaseUrl);
 
-    const {goalPosition} = props;
+    const {goalPosition, showSuccessModal} = props;
 
     const [ballPosition, setBallPosition] = useState(highLanderCoordinats);
+    const [buttonsEnabled, setButtonsEnabled] = useState(true);
 
     console.log(`ballPosition is ${ballPosition.lat} and ${ballPosition.lng}`);
 
@@ -51,7 +53,8 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
 
     useEffect(() => {
         socket.on('ballInGoal', (result) => {
-            console.log(`ballInGoal: ${result}`);
+            showSuccessModal();
+            setButtonsEnabled(false);
         })
     },[])
 
@@ -107,6 +110,7 @@ const MapComponent: React.FC<IMapComponentProps> = (props: IMapComponentProps) =
                         setLng={setLng}
                         lat={ballPosition.lat}
                         lng={ballPosition.lng}
+                        buttonsEnabled={buttonsEnabled}
                     />
 
                 </Marker>
