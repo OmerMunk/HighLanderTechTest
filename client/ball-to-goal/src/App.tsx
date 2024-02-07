@@ -1,32 +1,38 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import MapComponent from "./components/MapComponent";
 import {highLanderCoordinats} from "./constants/constants";
 import axios from 'axios'
 
-
+const fetchGoalPosition = async () => {
+    const newGoalPosition = {lat: 0, lng: 0};
+    const res = await axios.get('http://localhost:8000/api/v1/goal/generate-goal');
+    if (res.data.success){
+        newGoalPosition.lat = res.data.lat;
+        newGoalPosition.lng = res.data.lng;
+        return newGoalPosition;
+    } else {
+        return highLanderCoordinats;
+    }
+}
 
 function App() {
 
+    const [goalPosition, setGoalPosition] = useState(highLanderCoordinats);
 
-    const goalPosition = {lat: 0, lng: 0}
 
-    const getGoalPosition = () => {
-        axios
-            .get('http://localhost:8000/api/v1/goal/generate-goal')
-            .then((res)=>{
-                if(res.data.success){
-                    goalPosition.lat = res.data.lat
-                    goalPosition.lng = res.data.lng
-                }
 
-            }).catch((error)=>{
-            console.error(`error: ${error}`);
-        })
+    const getGoalPosition = async () => {
+        const newGoalPosition = await fetchGoalPosition();
+        setGoalPosition(newGoalPosition);
     }
 
-    getGoalPosition();
+    useEffect(()=>{
+        getGoalPosition();
+    },[])
+
+
 
   return (
     <div style={
@@ -43,6 +49,7 @@ function App() {
         {/*todo: would wrap in better looking ui for the user*/}
       <header style={{flexGrow: 1}}>
         Header
+          <button onClick={getGoalPosition} >reset</button>
       </header>
       <section style={{flexGrow: 22}}>
         <MapComponent goalPosition={goalPosition} getGoalPosition={getGoalPosition}  />
