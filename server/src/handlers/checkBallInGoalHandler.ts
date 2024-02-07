@@ -18,3 +18,5 @@ export const checkBallInGoalHandler = (x: number, y: number) => {
     const isWithinRadius = distance <= radius;
     return {success: true, isWithinRadius};
 }
+//todo: would deep dive more into turf and how it works.
+// todo: would use turf as an absraction for the geoservice functionalities.

@@ -8,12 +8,13 @@ interface IGoalComponentProps {
 const GoalComponent = (props:IGoalComponentProps) => {
     const {x, y} = props;
 
-
-    // Render your ball based on the position state
     return <article style={{ position: 'absolute', left: `${x}px`, top: `${y}px` }}>
+        {/*todo: would adapt the coordinates to the google map convention*/}
         <img
-            src={require('../images/ball.png')}
+            src={require('../images/goal.png')}
+            // todo: for some reason my computer rendered the downloaded file as jpeg - would change to png
             style={{ width: '75px', height: '75px', backgroundColor: 'transparent' }}
+            alt={'goal'}
         />
     </article>;
 };

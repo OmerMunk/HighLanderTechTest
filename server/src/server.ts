@@ -56,21 +56,13 @@ const io: socket.Server = new socket.Server(server, {
     }
 });
 
-// allow all origins
-// Property 'origins' does not exist on type 'Server<DefaultEventsMap, DefaultEventsMap, DefaultEventsMap, any>'.
-
-
 
 
 io.on('connection', (socket: socket.Socket) => {
-    console.log(`user connected`)
-
     socket.on('moveBall', (location: {x: number, y: number}) => {
         const result = checkBallInGoalHandler(location.x, location.y);
         io.emit('ballMoved', result)
     })
-
-    // io.emit('ballMoved', location)
 })
 
 /**
